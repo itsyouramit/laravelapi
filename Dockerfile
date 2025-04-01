@@ -2,11 +2,14 @@
 FROM php:8.1-apache
 
 # Install system dependencies and PHP extensions
-RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev zip git unzip libxml2-dev
+RUN apt-get update && apt-get install -y \
+    libpng-dev libjpeg-dev libfreetype6-dev zip git unzip \
+    libxml2-dev libssl-dev libcurl4-openssl-dev libicu-dev \
+    libzip-dev
 
 # Install PHP extensions required by Laravel
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo pdo_mysql xml
+    && docker-php-ext-install gd pdo pdo_mysql xml zip intl
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -18,7 +21,7 @@ WORKDIR /var/www/html
 COPY composer.json composer.lock /var/www/html/
 
 # Install Composer dependencies
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader --verbose
 
 # Copy the rest of the Laravel application into the container
 COPY . /var/www/html
