@@ -21,7 +21,7 @@
         <div class="hero text-center">
             <div class="container">
                 <h1 class="display-4">Welcome to Event Management</h1>
-                <p class="lead">Streamline your tender processes with our comprehensive management system.</p>
+                <p class="lead">Streamline your event processes with our comprehensive management system.</p>
                 <a href="{{ route('login') }}" class="btn btn-light btn-lg">Get Started</a>
             </div>
         </div>
@@ -32,23 +32,23 @@
                 <div class="col-md-4 text-center">
                     <img src="https://images.pexels.com/photos/3184295/pexels-photo-3184295.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Create Tenders" class="feature-image mb-3">
                     <h3>Create Tenders</h3>
-                    <p>Effortlessly create and manage tenders with our user-friendly interface.</p>
+                    <p>Effortlessly create and manage events with our user-friendly interface.</p>
                 </div>
                 <div class="col-md-4 text-center">
                     <img src="https://images.pexels.com/photos/3184295/pexels-photo-3184295.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Track Progress" class="feature-image mb-3">
                     <h3>Track Progress</h3>
-                    <p>Monitor the status of your tenders and ensure timely submissions.</p>
+                    <p>Monitor the status of your events and ensure timely submissions.</p>
                 </div>
                 <div class="col-md-4 text-center">
                     <img src="https://images.pexels.com/photos/3184295/pexels-photo-3184295.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Collaborate with Teams" class="feature-image mb-3">
                     <h3>Collaborate with Teams</h3>
-                    <p>Work together with your team to prepare and submit tenders efficiently.</p>
+                    <p>Work together with your team to prepare and submit events efficiently.</p>
                 </div>
             </div>
         </div>
 
         <footer class="text-center mt-5 mb-3">
-            <p>&copy; {{ date('Y') }} Tender Management. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} Events Management. All rights reserved.</p>
         </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
