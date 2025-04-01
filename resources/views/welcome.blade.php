@@ -20,7 +20,7 @@
     <body class="antialiased">
         <div class="hero text-center">
             <div class="container">
-                <h1 class="display-4">Welcome to Tender Management</h1>
+                <h1 class="display-4">Welcome to Event Management</h1>
                 <p class="lead">Streamline your tender processes with our comprehensive management system.</p>
                 <a href="{{ route('login') }}" class="btn btn-light btn-lg">Get Started</a>
             </div>
