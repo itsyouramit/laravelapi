@@ -20,7 +20,7 @@
     <body class="antialiased">
         <div class="hero text-center">
             <div class="container mt-2">
-                <h1 class="display-4">Welcome to Events Management</h1>
+                <h1 class="display-4">Welcome to Events Management System</h1>
                 <p class="lead">Streamline your event processes with our comprehensive management system.</p>
                 <a href="{{ route('login') }}" class="btn btn-light btn-lg">Get Started</a>
             </div>
