@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\ApiRegistrationController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,8 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+/* Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+}); */
+
+
+Route::post('register-client', [ApiRegistrationController::class, 'register']);
+
+
+Route::middleware(['client'])->get('student-list', function(){
+    return response()->json([
+        'data' => 'Here are the Student List are requested.'
+    ]);
 });
-
-

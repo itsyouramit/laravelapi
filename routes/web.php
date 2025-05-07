@@ -7,6 +7,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\Auth\LoginController;
 
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,11 +19,21 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-require __DIR__.'/auth.php';
+// require __DIR__.'/auth.php';
+
+//public url
+Route::get('/' , [HomeController::class, 'index'])->name('index');
+Route::get('about' , [HomeController::class, 'about'])->name('about');
+Route::get('services' , [HomeController::class, 'services'])->name('services');
+Route::get('contact' , [HomeController::class, 'contact'])->name('contact');
+Route::get('project' , [HomeController::class, 'project'])->name('project');
+Route::get('faq' , [HomeController::class, 'faq'])->name('faq');
+
+
+
+//https://app.durable.co/website/builder
+
 
 
 // Authentication Routes
@@ -43,7 +54,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
-}); 
+});
 
 Route::middleware(['auth', 'role:employee'])->group(function () {
     Route::get('/employee', [EmployeeController::class, 'index'])->name('employee.dashboard');
