@@ -9,6 +9,7 @@ use App\Models\Client;
 use App\Models\ApiClientMeta;
 use Laravel\Passport\ClientRepository;
 
+use Illuminate\Validation\ValidationException;
 
 class ApiRegistrationController extends Controller
 {
@@ -16,11 +17,21 @@ class ApiRegistrationController extends Controller
     {
 
         // Validate input data (you can add more validation if necessary)
-        $request->validate([
-            'client_name'    => 'required|string|max:255',
-            'contact_email'  => 'required|email|unique:api_client_metas,contact_email',
-            'description'    => 'required|string|max:500',
-        ]);
+        try {
+
+            $validated = $request->validate([
+                'client_name'    => 'required|string|max:255',
+                'contact_email'  => 'required|email|unique:api_client_metas,contact_email',
+                'description'    => 'required|string|max:500',
+                'allowed_scopes' => 'nullable|array',
+            ]);
+
+        } catch (ValidationException $e) {
+            return response()->json([
+                'message' => 'Validation failed.',
+                'errors' => $e->errors()
+            ], 422);
+        }
 
         $client = Client::create([
             'name' => $request->input('client_name'),
@@ -38,7 +49,7 @@ class ApiRegistrationController extends Controller
             'contact_email' => $request->input('contact_email'),
             'description' => $request->input('description'),
             'status' => 'pending',
-            // 'allowed_scopes' => json_encode(['get-student-list'])
+            'allowed_scopes' => json_encode($request->input('allowed_scopes', [])),    //optional
         ]);
 
         // Return the client_id and client_secret in the response

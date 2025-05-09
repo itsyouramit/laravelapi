@@ -28,6 +28,17 @@ class CheckClientApproval
                     'status' => $meta->status ?? 'not_found',
                 ], 403);
             }
+
+            $requestedScopes = $request->input('scopes', []); // Get requested scopes
+            $allowedScopes = json_decode($meta->allowed_scopes, true);
+
+            // If the requested scopes don't match the allowed ones, deny the request
+            if(!empty($requestedScopes) && !empty(array_diff($requestedScopes, $allowedScopes))){
+                return response()->json([
+                    'error' => 'Requested scopes are not allowed for this client.',
+                    'allowed_scopes' => $allowedScopes,
+                ], 201);
+            }
         }
 
         return $next($request);
